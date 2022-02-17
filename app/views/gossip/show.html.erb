@@ -1,9 +1,15 @@
 <div class="gossip-show-section">
     <div class="gossip-section">
-        <%=@gossip.title%><br>
-        <%=@gossip.content%><br>
-        <%=@user.login%><br>
-        <%=@city.name%><br>
+        <div class="gossip-title title">
+            <h2><%=@gossip.title%></h2>
+        </div>
+        <div class="gossip-content title">
+            <%=@gossip.content%><br>
+        </div>
+        <div class="user-info title">
+            By  : <%=@user.login%><br>
+            From : <%=@city.name%><br>
+        </div>
 
         <a href="<%=user_path(@user.id)%>" class="my-btn-user" style="text-decoration: none;">Go to user</a>
         <%if current_user && current_user.id == @user.id%>
@@ -13,12 +19,12 @@
         <div class="likes">
             <%if current_user%>
                 <%if Like.find_by(user_id: current_user.id, gossip_id: @gossip.id)%>
-                    <a href="<%= like_path(Like.find_by(user_id: current_user.id, gossip_id: @gossip.id).id) %>" style="text-decoration: none; border-radius : 50%" class='my-btn-destroy make-gossip-button', data-method="DELETE">❤</a>
+                    <a href="<%= like_path(Like.find_by(user_id: current_user.id, gossip_id: @gossip.id).id) %>" class='unlove-btn', data-method="DELETE">❤</a>
                 <%end%>
                 <%unless Like.find_by(user_id: current_user.id, gossip_id: @gossip.id)%>
                     <%= form_tag(like_index_path) do -%>
                         <%=hidden_field_tag "gossip_id", @gossip.id%>
-                        <button type="submit" class='my-btn make-gossip-button' style="border-radius:50%;">❤</button>
+                        <button type="submit" class='love-btn' style="border-radius:50%;">❤</button>
                     <% end -%>
                 <%end%>
             <%end%>
@@ -26,6 +32,7 @@
     </div>
 
     <div class="comment-section">
+        <h3 class="title" style="text-align:left">Comment section</h3>
         <div class="comments">
             <% @comments.each do |c|%>
                 <%if c.gossip_id == @gossip.id%>
