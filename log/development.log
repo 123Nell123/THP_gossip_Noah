@@ -1,0 +1,483 @@
+  [1m[35m (87.7ms)[0m  [1m[35mCREATE DATABASE "Gossip_Project_development" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (333.3ms)[0m  [1m[35mCREATE DATABASE "Gossip_Project_test" ENCODING = 'unicode'[0m
+  ↳ bin/rails:9
+  [1m[35m (29.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(2623955545562679195)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateUsers (20220210192939)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (5.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "first_name" character varying, "last_name" character varying, "description" text, "email" character varying, "age" integer, "city_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20220210192939_create_users.rb:3
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE  INDEX  "index_users_on_city_id" ON "users"  ("city_id")[0m
+  ↳ db/migrate/20220210192939_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220210192939"]]
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateCities (20220210193853)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE TABLE "cities" ("id" bigserial primary key, "name" character varying, "zip_code" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20220210193853_create_cities.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220210193853"]]
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateGossips (20220210202756)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "gossips" ("id" bigserial primary key, "title" character varying, "content" text, "user_id" bigint, "tag_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20220210202756_create_gossips.rb:3
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX  "index_gossips_on_user_id" ON "gossips"  ("user_id")[0m
+  ↳ db/migrate/20220210202756_create_gossips.rb:3
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE  INDEX  "index_gossips_on_tag_id" ON "gossips"  ("tag_id")[0m
+  ↳ db/migrate/20220210202756_create_gossips.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220210202756"]]
+  ↳ bin/rails:9
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateTags (20220210210030)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "tags" ("id" bigserial primary key, "title" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20220210210030_create_tags.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220210210030"]]
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreatePrivateMessages (20220210213200)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (3.3ms)[0m  [1m[35mCREATE TABLE "private_messages" ("id" bigserial primary key, "recipient_id" bigint, "sender_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20220210213200_create_private_messages.rb:3
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE  INDEX  "index_private_messages_on_recipient_id" ON "private_messages"  ("recipient_id")[0m
+  ↳ db/migrate/20220210213200_create_private_messages.rb:3
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX  "index_private_messages_on_sender_id" ON "private_messages"  ("sender_id")[0m
+  ↳ db/migrate/20220210213200_create_private_messages.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220210213200"]]
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateComments (20220210214340)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE TABLE "comments" ("id" bigserial primary key, "content" text, "user_id" bigint, "gossip_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20220210214340_create_comments.rb:3
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_user_id" ON "comments"  ("user_id")[0m
+  ↳ db/migrate/20220210214340_create_comments.rb:3
+  [1m[35m (1.6ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_gossip_id" ON "comments"  ("gossip_id")[0m
+  ↳ db/migrate/20220210214340_create_comments.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220210214340"]]
+  ↳ bin/rails:9
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreateLikes (20220210214625)
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (2.8ms)[0m  [1m[35mCREATE TABLE "likes" ("id" bigserial primary key, "gossip_id" bigint, "user_id" bigint, "comment_id" bigint, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20220210214625_create_likes.rb:3
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE  INDEX  "index_likes_on_gossip_id" ON "likes"  ("gossip_id")[0m
+  ↳ db/migrate/20220210214625_create_likes.rb:3
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE  INDEX  "index_likes_on_user_id" ON "likes"  ("user_id")[0m
+  ↳ db/migrate/20220210214625_create_likes.rb:3
+  [1m[35m (1.7ms)[0m  [1m[35mCREATE  INDEX  "index_likes_on_comment_id" ON "likes"  ("comment_id")[0m
+  ↳ db/migrate/20220210214625_create_likes.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220210214625"]]
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to LoginAndPassword (20220217095722)
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mALTER TABLE "users" ADD "password_digest" character varying[0m
+  ↳ db/migrate/20220217095722_login_and_password.rb:3
+  [1m[35m (0.1ms)[0m  [1m[35mALTER TABLE "users" ADD "login" character varying[0m
+  ↳ db/migrate/20220217095722_login_and_password.rb:4
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20220217095722"]]
+  ↳ bin/rails:9
+  [1m[35m (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-02-21 13:18:18.508914"], ["updated_at", "2022-02-21 13:18:18.508914"]]
+  ↳ bin/rails:9
+  [1m[35m (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(2623955545562679195)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Started GET "/" for 127.0.0.1 at 2022-02-21 05:18:25 -0800
+  [1m[35m (29.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/oneal/.rvm/gems/ruby-2.7.4/gems/activerecord-5.2.6.2/lib/active_record/log_subscriber.rb:98
+Processing by AppController#landing as HTML
+  Rendering app/landing.html.erb within layouts/application
+  Rendered app/landing.html.erb within layouts/application (15.7ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+Completed 200 OK in 1745ms (Views: 1743.1ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/images/the_gossip.jpg" for 127.0.0.1 at 2022-02-21 05:18:27 -0800
+  
+ActionController::RoutingError (No route matches [GET] "/images/the_gossip.jpg"):
+  
+actionpack (5.2.6.2) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.6.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.6.2) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.6.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.6.2) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.6.2) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.6.2) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.6.2) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.4.2) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.6.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.6.2) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.6.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.6.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.6.2) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.6.2) lib/rails/engine.rb:524:in `call'
+puma (3.12.6) lib/puma/configuration.rb:227:in `call'
+puma (3.12.6) lib/puma/server.rb:706:in `handle_request'
+puma (3.12.6) lib/puma/server.rb:476:in `process_client'
+puma (3.12.6) lib/puma/server.rb:334:in `block in run'
+puma (3.12.6) lib/puma/thread_pool.rb:135:in `block in spawn_thread'
+Started GET "/city" for 127.0.0.1 at 2022-02-21 05:18:33 -0800
+Processing by CityController#index as HTML
+  Rendering city/index.html.erb within layouts/application
+  [1m[36mCity Load (0.7ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+  ↳ app/views/city/index.html.erb:2
+  Rendered city/index.html.erb within layouts/application (5.2ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+Completed 200 OK in 33ms (Views: 27.4ms | ActiveRecord: 3.4ms)
+
+
+Started GET "/contact" for 127.0.0.1 at 2022-02-21 05:18:37 -0800
+Processing by AppController#contact as HTML
+  Rendering app/contact.html.erb within layouts/application
+  Rendered app/contact.html.erb within layouts/application (0.2ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+Completed 200 OK in 24ms (Views: 23.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/team" for 127.0.0.1 at 2022-02-21 05:18:39 -0800
+Processing by AppController#team as HTML
+  Rendering app/team.html.erb within layouts/application
+  Rendered app/team.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+Completed 200 OK in 29ms (Views: 28.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/gossip" for 127.0.0.1 at 2022-02-21 05:18:43 -0800
+Processing by GossipController#index as HTML
+  Rendering gossip/index.html.erb within layouts/application
+  [1m[36mGossip Load (0.9ms)[0m  [1m[34mSELECT "gossips".* FROM "gossips"[0m
+  ↳ app/views/gossip/index.html.erb:13
+  Rendered gossip/index.html.erb within layouts/application (5.5ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+Completed 200 OK in 52ms (Views: 42.3ms | ActiveRecord: 2.1ms)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2022-02-21 05:18:48 -0800
+Processing by SessionController#new as HTML
+  Rendering session/new.html.erb within layouts/application
+  Rendered session/new.html.erb within layouts/application (2.1ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+Completed 200 OK in 33ms (Views: 32.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/contact" for 127.0.0.1 at 2022-02-21 05:18:53 -0800
+Processing by AppController#contact as HTML
+  Rendering app/contact.html.erb within layouts/application
+  Rendered app/contact.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+Completed 200 OK in 39ms (Views: 37.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/gossip" for 127.0.0.1 at 2022-02-21 05:18:54 -0800
+Processing by GossipController#index as HTML
+  Rendering gossip/index.html.erb within layouts/application
+  [1m[36mGossip Load (0.3ms)[0m  [1m[34mSELECT "gossips".* FROM "gossips"[0m
+  ↳ app/views/gossip/index.html.erb:13
+  Rendered gossip/index.html.erb within layouts/application (2.6ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+Completed 200 OK in 26ms (Views: 24.6ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2022-02-21 05:18:59 -0800
+Processing by SessionController#new as HTML
+  Rendering session/new.html.erb within layouts/application
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+Completed 200 OK in 21ms (Views: 19.8ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/session" for 127.0.0.1 at 2022-02-21 05:19:08 -0800
+Processing by SessionController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"bqmTVQ3IKk2mqiaRpUHZFi+iqB15pdg6fTyZUo8EApDJjkzrWleCGDvwiu82HQcTR0I8XiKYAGHPps2E62N3gQ==", "login"=>"bob1", "password"=>"[FILTERED]"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."login" = $1 LIMIT $2[0m  [["login", "bob1"], ["LIMIT", 1]]
+  ↳ app/controllers/session_controller.rb:8
+  Rendering session/new.html.erb within layouts/application
+  Rendered session/new.html.erb within layouts/application (0.7ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+Completed 200 OK in 32ms (Views: 28.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/" for 127.0.0.1 at 2022-02-21 05:19:15 -0800
+Processing by AppController#landing as HTML
+  Rendering app/landing.html.erb within layouts/application
+  Rendered app/landing.html.erb within layouts/application (0.4ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+Completed 200 OK in 27ms (Views: 26.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/gossip" for 127.0.0.1 at 2022-02-21 05:19:17 -0800
+Processing by GossipController#index as HTML
+  Rendering gossip/index.html.erb within layouts/application
+  [1m[36mGossip Load (0.2ms)[0m  [1m[34mSELECT "gossips".* FROM "gossips"[0m
+  ↳ app/views/gossip/index.html.erb:13
+  Rendered gossip/index.html.erb within layouts/application (2.6ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+Completed 200 OK in 26ms (Views: 24.1ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/city" for 127.0.0.1 at 2022-02-21 05:19:24 -0800
+Processing by CityController#index as HTML
+  Rendering city/index.html.erb within layouts/application
+  [1m[36mCity Load (0.2ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+  ↳ app/views/city/index.html.erb:2
+  Rendered city/index.html.erb within layouts/application (1.5ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+Completed 200 OK in 27ms (Views: 25.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/contact" for 127.0.0.1 at 2022-02-21 05:19:26 -0800
+Processing by AppController#contact as HTML
+  Rendering app/contact.html.erb within layouts/application
+  Rendered app/contact.html.erb within layouts/application (0.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+Completed 200 OK in 21ms (Views: 20.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/team" for 127.0.0.1 at 2022-02-21 05:19:28 -0800
+Processing by AppController#team as HTML
+  Rendering app/team.html.erb within layouts/application
+  Rendered app/team.html.erb within layouts/application (0.2ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+Completed 200 OK in 20ms (Views: 19.4ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/session/new" for 127.0.0.1 at 2022-02-21 05:19:32 -0800
+Processing by SessionController#new as HTML
+  Rendering session/new.html.erb within layouts/application
+  Rendered session/new.html.erb within layouts/application (1.2ms)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+Completed 200 OK in 27ms (Views: 26.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/user/new" for 127.0.0.1 at 2022-02-21 05:19:35 -0800
+Processing by UserController#new as HTML
+  Rendering user/new.html.erb within layouts/application
+  Rendered user/new.html.erb within layouts/application (1.4ms)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" IS NULL LIMIT $1[0m  [["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+Completed 200 OK in 39ms (Views: 27.5ms | ActiveRecord: 2.2ms)
+
+
+Started POST "/user" for 127.0.0.1 at 2022-02-21 05:20:15 -0800
+Processing by UserController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"1loxl+cnuysW0yPvs2XCuC/MOsJLT94MxJnOTREr8uhxfe4psLgTfouJj5EgORy9RyyugRByBld2A5qbdUyH+Q==", "email"=>"bob.bob@yahoo.fr", "first_name"=>"bob", "last_name"=>"bob", "login"=>"bob", "password"=>"[FILTERED]"}
+Unpermitted parameters: :utf8, :authenticity_token
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/user_controller.rb:13
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."login" = $1 LIMIT $2[0m  [["login", "bob"], ["LIMIT", 1]]
+  ↳ app/controllers/user_controller.rb:13
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "bob.bob@yahoo.fr"], ["LIMIT", 1]]
+  ↳ app/controllers/user_controller.rb:13
+  [1m[36mUser Create (9.6ms)[0m  [1m[32mINSERT INTO "users" ("first_name", "last_name", "email", "city_id", "created_at", "updated_at", "password_digest", "login") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["first_name", "bob"], ["last_name", "bob"], ["email", "bob.bob@yahoo.fr"], ["city_id", 4], ["created_at", "2022-02-21 13:20:15.983640"], ["updated_at", "2022-02-21 13:20:15.983640"], ["password_digest", "$2a$12$G.gDA3M6NRH9R8vNvW9GYeN3di64/ygPeyk8duK5G5U6mU2oMW0OK"], ["login", "bob"]]
+  ↳ app/controllers/user_controller.rb:13
+  [1m[35m (1.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/user_controller.rb:13
+Redirected to http://localhost:3000/gossip
+Completed 302 Found in 240ms (ActiveRecord: 12.6ms)
+
+
+Started GET "/gossip" for 127.0.0.1 at 2022-02-21 05:20:16 -0800
+Processing by GossipController#index as HTML
+  Rendering gossip/index.html.erb within layouts/application
+  [1m[36mGossip Load (0.3ms)[0m  [1m[34mSELECT "gossips".* FROM "gossips"[0m
+  ↳ app/views/gossip/index.html.erb:13
+  Rendered gossip/index.html.erb within layouts/application (2.3ms)
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+Completed 200 OK in 45ms (Views: 43.0ms | ActiveRecord: 1.2ms)
+
+
+Started GET "/gossip/new?authenticity_token=lkABmke2wYkS4moh7XCmiQoW5EXutvZUaNeheSgIPLcxZ94kEClp3I%2B4xl9%2BLHiMYvZwBrWLLg%2FaTfWvTG9Jpg%3D%3D" for 127.0.0.1 at 2022-02-21 05:20:21 -0800
+Processing by GossipController#new as HTML
+  Parameters: {"authenticity_token"=>"lkABmke2wYkS4moh7XCmiQoW5EXutvZUaNeheSgIPLcxZ94kEClp3I+4xl9+LHiMYvZwBrWLLg/aTfWvTG9Jpg=="}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  Rendering gossip/new.html.erb within layouts/application
+  Rendered gossip/new.html.erb within layouts/application (1.9ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+Completed 200 OK in 29ms (Views: 23.7ms | ActiveRecord: 0.5ms)
+
+
+Started POST "/gossip" for 127.0.0.1 at 2022-02-21 05:20:25 -0800
+Processing by GossipController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"h+wglkhnDWqcBJoBzIxs4UjIPdIYqh/3VOITkU/YyaAgy/8oH/ilPwFeNn9f0LLkICipkUOXx6zmeEdHK7+8sQ==", "title"=>"ffff", "content"=>"ffff", "tag"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/gossip_controller.rb:26
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/gossip_controller.rb:26
+  [1m[36mGossip Create (0.5ms)[0m  [1m[32mINSERT INTO "gossips" ("title", "content", "user_id", "tag_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "ffff"], ["content", "ffff"], ["user_id", 1], ["tag_id", 1], ["created_at", "2022-02-21 13:20:25.825081"], ["updated_at", "2022-02-21 13:20:25.825081"]]
+  ↳ app/controllers/gossip_controller.rb:26
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/gossip_controller.rb:26
+  Rendering gossip/index_sucess.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mGossip Load (0.3ms)[0m  [1m[34mSELECT "gossips".* FROM "gossips"[0m
+  ↳ app/views/gossip/index_sucess.html.erb:18
+  [1m[36mLike Load (0.6ms)[0m  [1m[34mSELECT "likes".* FROM "likes"[0m
+  ↳ app/views/gossip/index_sucess.html.erb:20
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/views/gossip/index_sucess.html.erb:22
+  [1m[36mComment Load (0.6ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  ↳ app/views/gossip/index_sucess.html.erb:23
+  Rendered gossip/index_sucess.html.erb within layouts/application (15.8ms)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+Completed 200 OK in 69ms (Views: 32.6ms | ActiveRecord: 8.3ms)
+
+
+Started GET "/city" for 127.0.0.1 at 2022-02-21 05:21:14 -0800
+Processing by CityController#index as HTML
+  Rendering city/index.html.erb within layouts/application
+  [1m[36mCity Load (0.3ms)[0m  [1m[34mSELECT "cities".* FROM "cities"[0m
+  ↳ app/views/city/index.html.erb:2
+  Rendered city/index.html.erb within layouts/application (1.0ms)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/session_helper.rb:3
+Completed 200 OK in 20ms (Views: 18.1ms | ActiveRecord: 0.9ms)
+
+
