@@ -8,6 +8,8 @@ class SessionController < ApplicationController
         user = User.find_by(login: params[:login])
 
         if user && user.authenticate(params[:password])
+            # on va cuisiner le cookie pour l'utilisateur
+            remember(user)
             session[:user_id] = user.id
             redirect_to gossip_index_path
         else

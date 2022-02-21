@@ -11,4 +11,11 @@ class User < ApplicationRecord
     validates :login, presence: true, uniqueness: true, length: {minimum: 3, maximum: 14}
     validates :email, presence: true, uniqueness: true
     has_secure_password
+
+
+
+    def remember(remember_token)
+        remember_digest = BCrypt::Password.create(remember_token)
+        self.update(remember_digest: remember_digest)
+      end
 end
